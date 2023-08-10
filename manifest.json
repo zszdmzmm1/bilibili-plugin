@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "bilibili-pluge-in",
-  "description": "Base Level Extension",
+  "name": "b站集合视频剩余时间显示",
+  "description": "显示B站集合视频与分p视频的剩余观看时间。",
   "version": "1.0",
   "icons": {
     "16": "images/bilibili-icon-16.png",
