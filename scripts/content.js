@@ -4,17 +4,17 @@ let pageType = [pageType1, pageType2];
 let selectorStringSet;
 let isVideoListPage = false;
 let isFlag = true;
-for (let i = 0; i < pageType.length; i++){
-    if(document.querySelector(pageType[i][0])){
+for (let i = 0; i < pageType.length; i++) {
+    if (document.querySelector(pageType[i][0])) {
         selectorStringSet = pageType[i];
         isVideoListPage = true;
     }
 }
 
-if(isVideoListPage){
+if (isVideoListPage) {
     //每秒执行一次
     setInterval(function () {
-        if(isFlag){
+        if (isFlag) {
             let timeElement = document.querySelectorAll(selectorStringSet[1]);
             //let timeElement = pageElementsAdapter("div.video-episode-card__info-duration", "ul.list-box div.duration");
             //集合视频总时长
@@ -23,18 +23,17 @@ if(isVideoListPage){
             let isStart = false;
             //循环每一个时间元素
             timeElement.forEach(function (element) {
-                {
-                    let imgStyle = element.parentElement.querySelector("img");
-                    //判断正在播放的视频，改变开始计算的标志的状态
-                    if ( !(imgStyle.hasAttribute("style")) || imgStyle.getAttribute("style") === "") {
-                        isStart = true;
-                    }
-                    //计算每个视频的时长，相加
-                    if (isStart) {
-                        let singleTime = getSeconds(element.innerText);
-                        videoTimeSum += singleTime;
-                    }
+                let imgStyle = element.parentElement.querySelector("img");
+                //判断正在播放的视频，改变开始计算的标志的状态
+                if (!(imgStyle.hasAttribute("style")) || imgStyle.getAttribute("style") === "") {
+                    isStart = true;
                 }
+                //计算每个视频的时长，相加
+                if (isStart) {
+                    let singleTime = getSeconds(element.innerText);
+                    videoTimeSum += singleTime;
+                }
+
             })
             //装目前视频所在时间位置
             let currentVideoSeconds = 0;
@@ -66,10 +65,10 @@ if(isVideoListPage){
         //爬取集合中包含视频时间的元素
     }, 1000);
 
-    window.addEventListener("keyup", function (e){
-        if(e.key === "Control"){
+    window.addEventListener("keyup", function (e) {
+        if (e.key === "Control") {
             isFlag = !isFlag;
-            if(document.querySelector("div.remainTime")){
+            if (document.querySelector("div.remainTime")) {
                 document.querySelector("div.remainTime").remove();
             }
         }
