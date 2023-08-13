@@ -24,30 +24,37 @@ window.addEventListener("load", function (e) {
 })
 
 
+
 window.addEventListener("keyup", function (e) {
     if (e.key === "Control") {
         isFlag = !isFlag;
         if (document.querySelector("div.remainTime")) {
             document.querySelector("div.remainTime").remove();
-        }if(isFlag){
+        }
+        if (isFlag) {
             run();
         }
     }
 })
 
-window.addEventListener("keydown", function (e){
+window.addEventListener("keydown", function (e) {
     let rate = document.querySelector("video").playbackRate;
-    if(e.shiftKey && e.key === "ArrowRight"){
+    if (e.shiftKey && e.key === "ArrowRight") {
         rate += 0.5;
     }
-    if(e.shiftKey && e.key === "ArrowLeft"){
+    if (e.shiftKey && e.key === "ArrowLeft") {
         rate -= 0.5;
+    }
+    if (e.shiftKey && e.altKey && e.key === "ArrowLeft") {
+        rate -= 0.1;
+    }
+    if (e.shiftKey && e.altKey && e.key === "ArrowRight") {
+        rate += 0.1;
     }
     document.querySelector("video").playbackRate = rate;
 })
 
-
-function run(){
+function run() {
     if (isVideoListPage) {
         //每秒执行一次
         let id = setInterval(function () {
@@ -98,12 +105,12 @@ function run(){
                 } else {
                     document.querySelector("div.remainTime").innerText = element.innerText;
                 }
-            }else{
+            } else {
                 clearInterval(id);
             }
             //爬取集合中包含视频时间的元素
         }, 1000);
-}
+    }
 }
 
 
